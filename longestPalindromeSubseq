@@ -1,0 +1,15 @@
+class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        c = [[0 for i in range(len(s))] for i in range(len(s))]
+        k=0
+        for i in range(0,len(s)):
+            for j in range(len(s)-i):
+                t=i+j
+                if t == j :
+                    c[j][t] = 1
+                elif s[t] == s[j]:
+                    c[j][t] = c[j+1][t-1] + 2
+                else:
+                    c[j][t] = max(c[j][t-1],c[j+1][t])
+
+        return c[0][len(s)-1]
