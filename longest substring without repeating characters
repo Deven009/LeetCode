@@ -1,0 +1,22 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        count_dictionary = {}
+        maxSum = -1
+        counter = 0
+        for i in range(len(s)):
+            print(count_dictionary)
+
+            if count_dictionary.get(s[i]) is not None and count_dictionary.get(s[i]) >= 0:
+                print(s[i])
+                print(counter)
+                maxSum = max(counter, (i - count_dictionary[s[i]]), maxSum)
+                print("MAXSUM ", maxSum)
+                counter = (i - count_dictionary[s[i]])
+                count_dictionary[s[i]] = i
+            
+            else:
+                count_dictionary[s[i]] = i
+                counter += 1
+
+        return max(maxSum, counter)
+            
